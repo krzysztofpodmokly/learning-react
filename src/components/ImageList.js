@@ -1,12 +1,12 @@
 import React from 'react';
+import './ImageList.css';
+import ImageCard from './ImageCard';
 
 const ImageList = (props) => {
-    const images = props.images.map(({description, id, urls}) => {
-        // 'key' element must be added to the root element.
-        // If an <img> would be nested inside a div, 'key' must be added to this div.
-        return <img key={ id } src={ urls.regular } alt={ description }/>
+    const images = props.images.map(image => {
+        return <ImageCard key={ image.id } image={ image } />
     });
-    return <div>{ images }</div>
+    return <div className="image-list">{ images }</div>
 }
 
 export default ImageList;

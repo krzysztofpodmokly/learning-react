@@ -12,6 +12,7 @@ class SearchBar extends React.Component {
 
         // TODO: Make sure we call
         // callback from parent component
+        this.props.onInputSubmit(this.state.term); // Passing input value from SearchBar to App
     }
 
     render() {

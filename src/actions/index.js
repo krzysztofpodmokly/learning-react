@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import jsonPlaceholder from '../apis/jsonPlaceholder';
 
 // Action creator
@@ -14,3 +15,19 @@ export const fetchPosts = () => async (dispatch) => {
     // dispatch & getState as arguments
     
 };
+
+// Lodash library is used here to prevent from sending multiple requests
+// with _.memoize function is save in memory once it was invoked for the first time
+export const fetchUser = (id) => dispatch => _fetchuser(id, dispatch);
+
+const _fetchuser = _.memoize(async (id, dispatch) => {
+    const response = await jsonPlaceholder.get(`/users/${id}`);
+    dispatch({ type: 'FETCH_USER', payload: response });
+});
+
+// export const fetchUser = function(id) { 
+//     return async function(dispatch) {
+//         const response = await jsonPlaceholder.get(`/users/${id}`);
+//         dispatch({ type: 'FETCH_USER', payload: response });
+//     };
+// };
